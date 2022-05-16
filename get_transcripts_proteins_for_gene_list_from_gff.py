@@ -18,17 +18,17 @@ for line in fhand_gff:
 		continue
 	temp = line.split()
 	if temp[2] == "CDS":
-		cdsprot = re.findall("ID=cds-(\S+);Parent", line)[0]
-		if cdsprot not in found_prots:
-			found_prots.append(cdsprot)	
+		protein = re.findall("ID=cds-(\S+);Parent", line)[0]
+		if protein not in found_prots:
+			found_prots.append(protein)	
 			transcript = re.findall("Parent=rna-(\S+);Dbxref", line)[0]
 			gene = re.findall("gene=(LOC\d+)", line)[0]
 			if gene in list_genes: 
 				if gene in genes:
-					genes[gene].append((transcript, cdsprot))
+					genes[gene].append((transcript, protein))
 				else:
 					genes[gene] = []
-					genes[gene].append((transcript, cdsprot))
+					genes[gene].append((transcript, protein))
 
 print "Genes found:", len(genes)
 print "Genes in list:", len(list_genes)

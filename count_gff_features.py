@@ -13,7 +13,7 @@ with open(sys.argv[1]) as fhand:
 		temp = line.split()
 		# check that line contains at least 9 columns, as specified in gff definition
 		if len(temp) < 9:
-			print "\nCheck file format: gff file should have at least nine columns\n"
+			print("\nCheck file format: gff file should have at least nine columns\n")
 			complete = False
 			break
 		# add to dict or increment
@@ -23,7 +23,11 @@ with open(sys.argv[1]) as fhand:
 			features[temp[2]] += 1
 
 if complete:
-	print 		
-	print "Features present in file", sys.argv[1], "and number of entries:"
+	feature_total = 0
+	print() 		
+	print("Features present in file", sys.argv[1], "and number of entries:")
 	for feature in sorted(features):
-		print feature + ": " + "\t" + str(features[feature])
+		feature_total += features[feature]
+		print(feature + ": " + "\t" + str(features[feature]))
+	print("Total:", feature_total) 
+	
